@@ -113,12 +113,28 @@
         }
 
     };
-    function wheel (event) {
+    function wheel(event) {
         _index += event.wheelDelta / 120;
         render();
         console.log(event.wheelDelta);
     };
 
+    var drag = {
+      down: false,
+
+      StartDrag: function () {
+        console.log('mousedown');
+        this.down = true;
+      },
+      Drag: function (event) {
+        if (!this.down) return;
+        var mouseX = event.clientX;
+        console.log(mouseX);
+      },
+      EndDrag: function() {
+        this.down = false;
+      }
+    };
     /**
      * Register all events 
      **/
@@ -128,6 +144,9 @@
         document.addEventListener('keydown', keyDown, false);
         _coverflow.addEventListener('mousewheel', wheel, false);
         _coverflow.addEventListener('click', flowToTarget, false);
+        _coverflow.addEventListener('mousedown', drag.StartDrag, false);
+        _coverflow.addEventListener('mousemove', drag.Drag, false);
+        _coverflow.addEventListener('mouseup', drag.EndDrag, false);
     };
 
     /**
