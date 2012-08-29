@@ -21,6 +21,8 @@
     BASE_ZINDEX = 10; // 
     MAX_ZINDEX = 42; // 
 
+    _albums = Array.prototype.slice.call( document.querySelectorAll( 'section' ));
+    var albumsLength = _albums.length;
     /**
      * Get selector from the dom
      **/
@@ -32,29 +34,33 @@
      * Renders the CoverFlow based on the current _index
      **/
     function render() {
-
-        // loop through albums & transform positions
-        for( var i = 0; i < _albums.length; i++ ) {
+        if (_index < 0 || _index >= albumsLength) {
+            return;
+        } else {
+            for( var i = 0; i < albumsLength; i++ ) {
  
-            // before 
-            if( i < _index ) {
-                _albums[i].style[_transformName] = "translateX( -"+ ( OFFSET * ( _index - i  ) ) +"% ) rotateY( "+ ROTATION +"deg )";
-                _albums[i].style.zIndex = BASE_ZINDEX + i;  
-            } 
+                // before 
+                if( i < _index ) {
+                    _albums[i].style[_transformName] = "translateX( -"+ ( OFFSET * ( _index - i  ) ) +"% ) rotateY( "+ ROTATION +"deg )";
+                    _albums[i].style.zIndex = BASE_ZINDEX + i;  
+                } 
 
-            // current
-             if( i === _index ) {
-                _albums[i].style[_transformName] = "rotateY( 0deg ) translateZ( 140px )";
-                _albums[i].style.zIndex = MAX_ZINDEX;  
-            } 
+                // current
+                 if( i === _index ) {
+                    _albums[i].style[_transformName] = "rotateY( 0deg ) translateZ( 140px )";
+                    _albums[i].style.zIndex = MAX_ZINDEX;  
+                } 
 
-             // after
-            if( i > _index ) {
-                _albums[i].style[_transformName] = "translateX( "+ ( OFFSET * ( i - _index  ) ) +"% ) rotateY( -"+ ROTATION +"deg )";
-                _albums[i].style.zIndex = BASE_ZINDEX + ( _albums.length - i  ); 
-            }         
+                 // after
+                if( i > _index ) {
+                    _albums[i].style[_transformName] = "translateX( "+ ( OFFSET * ( i - _index  ) ) +"% ) rotateY( -"+ ROTATION +"deg )";
+                    _albums[i].style.zIndex = BASE_ZINDEX + ( _albums.length - i  ); 
+                }         
         
+            }
         }
+        // loop through albums & transform positions
+
 
     };
 
@@ -86,6 +92,16 @@
       
     };
 
+    function flowToTarget(e) {
+       for (var i=0; i<albumsLength;i++) {
+        if (_albums[i] == e.target) {
+            _index = i;
+            render();
+            i = albumsLength;
+        }
+      }
+    };
+
     /**
      * Enable left & right keyboard events
      **/
@@ -97,6 +113,11 @@
         }
 
     };
+    function wheel (event) {
+        _index += event.wheelDelta / 120;
+        render();
+        console.log(event.wheelDelta);
+    };
 
     /**
      * Register all events 
@@ -105,6 +126,8 @@
         _prevLink.addEventListener('click', flowRight, false);
         _nextLink.addEventListener('click', flowLeft, false);
         document.addEventListener('keydown', keyDown, false);
+        _coverflow.addEventListener('mousewheel', wheel, false);
+        _coverflow.addEventListener('click', flowToTarget, false);
     };
 
     /**
