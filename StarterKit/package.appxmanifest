@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="eb96556c-a540-491e-942f-f3eae6d1249e" Version="9.1.0.0" Publisher="CN=Ratio" />
+  <Properties>
+    <DisplayName>StarterKit</DisplayName>
+    <PublisherDisplayName>Ratio</PublisherDisplayName>
+    <Logo>assets\images\storelogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" StartPage="default.html">
+      <VisualElements DisplayName="StarterKit" Logo="assets\images\logo.png" SmallLogo="assets\images\smalllogo.png" Description="StarterKit" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" WideLogo="assets\images\widelogo.png" />
+        <SplashScreen Image="assets\images\splashscreen.png" BackgroundColor="white" />
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

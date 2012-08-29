@@ -121,15 +121,29 @@
 
     var drag = {
       down: false,
+      mouseStart: 0,
 
-      StartDrag: function () {
-        console.log('mousedown');
+      StartDrag: function (event) {
+        this.mouseStart = event.clientX;
         this.down = true;
       },
       Drag: function (event) {
         if (!this.down) return;
         var mouseX = event.clientX;
         console.log(mouseX);
+        console.log("diff = "+(mouseX - this.mouseStart));
+        if (mouseX - this.mouseStart > 50 ) {
+
+          _index++;
+          render();
+          this.mouseStart = mouseX;
+        };
+        if (mouseX - this.mouseStart < -50 ) {
+
+          _index--;
+          render();
+          this.mouseStart = mouseX;
+        };
       },
       EndDrag: function() {
         this.down = false;
@@ -147,6 +161,9 @@
         _coverflow.addEventListener('mousedown', drag.StartDrag, false);
         _coverflow.addEventListener('mousemove', drag.Drag, false);
         _coverflow.addEventListener('mouseup', drag.EndDrag, false);
+        // _coverflow.addEventListener('MSPointerDown', drag.StartDrag, false);
+        // _coverflow.addEventListener('MSPointerMove', drag.Drag, false);
+        // _coverflow.addEventListener('MSPointerUp', drag.EndDrag, false);
     };
 
     /**

@@ -1,0 +1,67 @@
+﻿.homepage section[role=main] {
+    /*padding-left: 120px;*/
+}
+
+#semanticZoom.out {
+    opacity:0;
+    transition:all 0.3s ease-out;
+}
+
+    #semanticZoom.in {
+        opacity:1;
+    }
+
+.homeList {
+    width:100%;
+    height:100%;
+}
+
+.win-listview {
+    width:100%;
+    height:100%;
+    box-sizing:border-box;
+}
+.win-listview .win-viewport {
+    box-sizing:border-box;
+    padding-left: 120px;
+}
+.win-groupheader h2.header-title {
+    font-size: xx-large;
+    font-weight: bold;
+    display: inline;
+    padding-right: 20px;
+}
+.win-groupheader p.header-item-count {
+    font-size: small;
+    display: inline;
+}
+.win-container .tileDiv {
+    max-width:310px;
+    max-height:150px;
+}
+.win-container .tileDiv h3 {
+    position: absolute;
+    bottom: 0px;
+    padding: 5px 10px;
+    box-sizing:border-box;
+    background: rgba(0,0,0,0.5);
+    text-align: left;
+    width: 100%;
+    color: #fff;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .homepage section[role=main] {
+        margin-left: 20px;
+    }
+}
+
+@media screen and (-ms-view-state: portrait) {
+    .homepage section[role=main] {
+        margin-left: 100px;
+    }
+}
+
+
+
+

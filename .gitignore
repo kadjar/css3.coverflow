@@ -1,0 +1,7 @@
+AppPackages
+bin
+bld
+obj
+*jsproj.user
+*.suo
+*Thumbs.db

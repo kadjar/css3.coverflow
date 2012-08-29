@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>StarterKit</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+
+    <!-- StarterKit references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+    <script src="/js/navigator.js"></script>
+
+    <script src="/libs/Log.js"></script>
+    <script src="/libs/Get.js"></script>
+    <script src="/libs/Delegate.js"></script>
+    <script src="/libs/Signal.js"></script>
+    <script src="/libs/Promise.js"></script>
+    <script src="/libs/ConnectionState.js"></script>
+    <script src="/libs/FileService.js"></script>
+    <script src="/libs/Task.js"></script>
+    <script src="/libs/AppBarModel.js"></script>
+    <script src="/libs/idborm/Add.js"></script>
+    <script src="/libs/idborm/Delete.js"></script>
+    <script src="/libs/idborm/Query.js"></script>
+    <script src="/libs/idborm/Join.js"></script>
+    <script src="/libs/idborm/Select.js"></script>
+    <script src="/libs/idborm/Property.js"></script>
+    <script src="/libs/idborm/Orm.js"></script>
+    <script src="/libs/idborm/IdbOrm.js"></script>
+
+    <script src="/components/StatusView.js"></script>
+    <script src="/components/Tile.js"></script>
+    <script src="/components/Header.js"></script>
+    <script src="/components/Renderers.js"></script>
+    <script src="/models/AppBar.js"></script>
+    <script src="/models/ViewModel.js"></script>
+
+    <script src="/data/WebService.js"></script>
+    <script src="/data/Repository.js"></script>
+    <script src="/data/DataService.js"></script>
+    <script src="/data/DataContext.js"></script>
+
+    <script src="/js/qunitmetro.js"></script>
+    <link href="/css/qunitmetro.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="splashBackground">    
+        <img id="extended-splash-image" src="/assets/images/splashscreen.png" alt="Splash Screen Image" />
+    </div>
+
+    <div id="statusview" data-win-control="Ratio.UI.StatusView">
+        <div id="progress-status">
+            <label id="progress-message">
+                <progress class="withText"></progress>
+            </label>
+        </div>
+        <p id="network-status"></p>
+        <p id="message"></p>
+    </div>
+
+    <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/splash/splash.html'}"></div>
+    <div id="appbar" data-win-control="WinJS.UI.AppBar">
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'skip', label:'Skip', icon:'next'}" type="button"></button>
+    </div>
+</body>
+</html>
