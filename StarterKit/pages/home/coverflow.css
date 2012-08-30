@@ -43,7 +43,7 @@ html, body {
     width: 170px;
     height: 170px;
     
-    margin-left: -90px;
+    margin-left: -85px;
     margin-top: -90px;
     
     background-size: 100%;
@@ -51,7 +51,7 @@ html, body {
    
     transform-style: preserve-3d;
    
-    transition: all 300ms ease-in;
+    transition: all 300ms ease-in; 
 
 }
 .item-image {
@@ -80,19 +80,20 @@ top: 50px;
   display: inline-block;
   color: black;
   width: 200px;
+  padding: 10px 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -100px;
 
-      position: absolute;
-    top: 50%;
-    left: 43%;
-
-    transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
 }
 #title-bar title.title-active {
 background: grey;
 color: #fff;
 font-weight: bold;
 font-size: large;
-padding: 10px 20px;
+padding: 10px 0px;
 }
 #coverflow-titles {
   position: absolute;

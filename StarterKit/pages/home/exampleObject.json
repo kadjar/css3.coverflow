@@ -1,0 +1,19 @@
+﻿{ 
+  "items": [
+    { "title":"Fun." , "image":"/assets/images/album1.jpg", "description":"This is a brand new album from Fun." },
+    { "title":"Adele" , "image":"/assets/images/album2.jpg", "description":"Adele doesn't care if you think she's fat." },
+    { "title":"MX" , "image":"/assets/images/album3.jpg", "description":"I don't know anything about MX." },
+    { "title":"Pink Floyd" , "image":"/assets/images/album4.jpg", "description":"LSD creates some interesting things." },
+    { "title":"Beyonce" , "image":"/assets/images/album5.jpg", "description":"Beyonce dances sometimes." },
+    { "title":"Rio Soundtrack" , "image":"/assets/images/album6.jpg", "description":"That movie you meant to see with your kid." },
+    { "title":"Calvin Harris" , "image":"/assets/images/album7.jpg", "description":"Calvin knows that feel, bro." },
+    { "title":"Fun." , "image":"/assets/images/album1.jpg", "description":"This is a brand new album from Fun." },
+    { "title":"Adele" , "image":"/assets/images/album2.jpg", "description":"Adele doesn't care if you think she's fat." },
+    { "title":"MX" , "image":"/assets/images/album3.jpg", "description":"I don't know anything about MX." },
+    { "title":"Pink Floyd" , "image":"/assets/images/album4.jpg", "description":"LSD creates some interesting things." },
+    { "title":"Beyonce" , "image":"/assets/images/album5.jpg", "description":"Beyonce dances sometimes." },
+    { "title":"Rio Soundtrack" , "image":"/assets/images/album6.jpg", "description":"That movie you meant to see with your kid." },
+    { "title":"Calvin Harris" , "image":"/assets/images/album7.jpg", "description":"Calvin knows that feel, bro." }
+  ];
+}
+

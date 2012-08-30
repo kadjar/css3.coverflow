@@ -22,14 +22,14 @@ coverflow.init = function() {
 
     // Constants
     OFFSET = 50; // pixels
-    ROTATION = 45; // degrees
+    ROTATION = 25; // degrees
     BASE_ZINDEX = 10; // 
     MAX_ZINDEX = 42; // 
 
     _items = Array.prototype.slice.call(document.querySelectorAll('.item'));
     _titles = Array.prototype.slice.call(document.querySelectorAll('.item aside title'));
     _descriptions = Array.prototype.slice.call(document.querySelectorAll('.item aside'));
-    var _itemWidth = _items[0].offsetWidth;
+    var OFFSET = _items[0].offsetWidth;
     var _itemHeight = _items[0].offsetHeight;
     var itemsLength = _items.length - 1;
     /**
@@ -50,7 +50,7 @@ coverflow.init = function() {
  
                 // before 
                 if( i < _index ) {
-                    _items[i].style[_transformName] = "translateX( -" + (OFFSET * (_index - i)) + "% )";
+                    _items[i].style[_transformName] = "translateX( -" + ((OFFSET - (OFFSET / Math.pow(1.5,(_index - i))))*4) + "px )";
                     _items[i].style.zIndex = BASE_ZINDEX + i;
                     _itemImages[i].style[_transformName] = "rotateY( " + ROTATION + "deg )"/* + " scaleX( .8 )"*/;
 
@@ -74,7 +74,7 @@ coverflow.init = function() {
 
                  // after
                 if( i > _index ) {
-                    _items[i].style[_transformName] = "translateX( " + (OFFSET * (i - _index)) + "% )";
+                  _items[i].style[_transformName] = "translateX( " + ((OFFSET - (OFFSET / Math.pow(1.5, (i - _index)))) * 4) + "px )";
                     _items[i].style.zIndex = BASE_ZINDEX + (itemsLength - i);
                     _itemImages[i].style[_transformName] = "rotateY( -" + ROTATION + "deg )"/* + " scaleX( .8 )"*/;
                     _items[i].setAttribute("class", "item");
@@ -157,7 +157,9 @@ coverflow.init = function() {
             var mouseX = event.clientX;
             if (mouseX - drag.mouseStart > 100 ) {
                 _index--;
-                render();
+                render();               
+                //console.log("MouseX " + mouseX);
+                //console.log("drag.mouseStart " + drag.mouseStart);
                 drag.mouseStart = mouseX;
             };
             if (mouseX - drag.mouseStart < -100 ) {
@@ -168,6 +170,7 @@ coverflow.init = function() {
         },
       EndDrag: function() {
         drag.down = false;
+        
       }
     };
 
