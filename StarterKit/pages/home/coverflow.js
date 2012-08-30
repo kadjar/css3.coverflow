@@ -51,6 +51,8 @@ coverflow.init = function() {
                     _albums[i].style[_transformName] = "translateX( -" + (OFFSET * (_index - i)) + "% )";
                     _albums[i].style.zIndex = BASE_ZINDEX + i;
                     _itemImages[i].style[_transformName] = "rotateY( " + ROTATION + "deg )"/* + " scaleX( .8 )"*/;
+
+                    _titles[i].style[_transformName] = "translateX( -" + (200 * (_index - i)) + "px )";
                 }
 
                 // current
@@ -58,6 +60,8 @@ coverflow.init = function() {
                     _albums[i].style[_transformName] = "scale(1.2)";
                     _albums[i].style.zIndex = MAX_ZINDEX;
                     _itemImages[i].style[_transformName] = "rotateY( 0deg )";
+
+                    _titles[i].style[_transformName] = "translateX(0px)";
                 } 
 
                  // after
@@ -65,6 +69,8 @@ coverflow.init = function() {
                     _albums[i].style[_transformName] = "translateX( " + (OFFSET * (i - _index)) + "% )";
                     _albums[i].style.zIndex = BASE_ZINDEX + (albumsLength - i);
                     _itemImages[i].style[_transformName] = "rotateY( -" + ROTATION + "deg )"/* + " scaleX( .8 )"*/;
+
+                    _titles[i].style[_transformName] = "translateX( " + (200 * (i - _index)) + "px )";
                 }         
         
             }
@@ -160,7 +166,12 @@ coverflow.init = function() {
     /*
     Titles
     */
-
+    function renderTitles() {
+      for (var i = 0; i < albumsLength; i++) {
+        _titleBar.innerHTML += "<title>"+_titles[i].innerHTML+"</title>";
+      }
+      _titles = Array.prototype.slice.call(document.querySelectorAll('#title-bar > title'));
+    }
 
     /**
      * Register all events 
@@ -186,13 +197,14 @@ coverflow.init = function() {
 
         // get albums & set index on the album in the middle
         _albums = Array.prototype.slice.call(document.querySelectorAll('section'));
-        _itemImages = Array.prototype.slice.call(document.querySelectorAll('.item-image'))
+        _itemImages = Array.prototype.slice.call(document.querySelectorAll('.item-image'));
         _index = Math.floor( albumsLength / 2 );
 
         // get dom stuff
         _coverflow = get('#coverflow');
         _prevLink = get('#prev');
         _nextLink = get('#next');
+        _titleBar = get('#title-bar');
 
         // display covers
         for( var i = 0; i < albumsLength; i++ ) {
@@ -200,10 +212,11 @@ coverflow.init = function() {
             _itemImages[i].style.backgroundImage = "url("+ url  +")";
         }
 
+
         // do important stuff
         registerEvents();
+        renderTitles();
         render();
-
    };
 
     // go!
