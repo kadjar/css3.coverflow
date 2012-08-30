@@ -14,7 +14,7 @@ coverflow.init = function() {
     _coverflow = null,
     _prevLink = null,
     _nextLink = null,
-    _albums = [],
+    _items = [],
     _titles = [],
     _transformName = 'transform',
     
@@ -25,11 +25,11 @@ coverflow.init = function() {
     BASE_ZINDEX = 10; // 
     MAX_ZINDEX = 42; // 
 
-    _albums = Array.prototype.slice.call(document.querySelectorAll('section'));
-    _titles = Array.prototype.slice.call(document.querySelectorAll('section > title'));
-    var _albumWidth = _albums[0].offsetWidth;
-    var _albumHeight = _albums[0].offsetHeight;
-    var albumsLength = _albums.length - 1;
+    _items = Array.prototype.slice.call(document.querySelectorAll('.item'));
+    _titles = Array.prototype.slice.call(document.querySelectorAll('.item > title'));
+    var _itemWidth = _items[0].offsetWidth;
+    var _itemHeight = _items[0].offsetHeight;
+    var itemsLength = _items.length - 1;
     /**
      * Get selector from the dom
      **/
@@ -41,41 +41,47 @@ coverflow.init = function() {
      * Renders the CoverFlow based on the current _index
      **/
     function render() {
-        if (_index < 0 || _index >= albumsLength) {
+        if (_index < 0 || _index >= itemsLength) {
             return;
         } else {
-            for( var i = 0; i < albumsLength; i++ ) {
+            for( var i = 0; i < itemsLength; i++ ) {
  
                 // before 
                 if( i < _index ) {
-                    _albums[i].style[_transformName] = "translateX( -" + (OFFSET * (_index - i)) + "% )";
-                    _albums[i].style.zIndex = BASE_ZINDEX + i;
+                    _items[i].style[_transformName] = "translateX( -" + (OFFSET * (_index - i)) + "% )";
+                    _items[i].style.zIndex = BASE_ZINDEX + i;
                     _itemImages[i].style[_transformName] = "rotateY( " + ROTATION + "deg )"/* + " scaleX( .8 )"*/;
 
                     _titles[i].style[_transformName] = "translateX( -" + (200 * (_index - i)) + "px )";
+                    _titles[i].setAttribute("class", "");
+                    _items[i].setAttribute("class", "");
                 }
 
                 // current
                  if( i === _index ) {
-                    _albums[i].style[_transformName] = "scale(1.2)";
-                    _albums[i].style.zIndex = MAX_ZINDEX;
+                    _items[i].style[_transformName] = "scale(1.2)";
+                    _items[i].style.zIndex = MAX_ZINDEX;
                     _itemImages[i].style[_transformName] = "rotateY( 0deg )";
 
                     _titles[i].style[_transformName] = "translateX(0px)";
+                    _titles[i].setAttribute("class", "title-active");
+                    _items[i].setAttribute("class", "item-active");
                 } 
 
                  // after
                 if( i > _index ) {
-                    _albums[i].style[_transformName] = "translateX( " + (OFFSET * (i - _index)) + "% )";
-                    _albums[i].style.zIndex = BASE_ZINDEX + (albumsLength - i);
+                    _items[i].style[_transformName] = "translateX( " + (OFFSET * (i - _index)) + "% )";
+                    _items[i].style.zIndex = BASE_ZINDEX + (itemsLength - i);
                     _itemImages[i].style[_transformName] = "rotateY( -" + ROTATION + "deg )"/* + " scaleX( .8 )"*/;
+                    _items[i].setAttribute("class", "");
 
                     _titles[i].style[_transformName] = "translateX( " + (200 * (i - _index)) + "px )";
+                    _titles[i].setAttribute("class", "");
                 }         
         
             }
         }
-        // loop through albums & transform positions
+        // loop through items & transform positions
 
 
     };
@@ -85,7 +91,7 @@ coverflow.init = function() {
      **/
     function flowRight() {
 
-       // check if has albums 
+       // check if has items 
        // on the right side
        if( _index ) {
             _index--;
@@ -99,9 +105,9 @@ coverflow.init = function() {
      **/
     function flowLeft() {
 
-        // check if has albums 
+        // check if has items 
        // on the left side
-       if( albumsLength > ( _index + 1)  ) {
+       if( itemsLength > ( _index + 1)  ) {
             _index++;
             render();
        }
@@ -109,11 +115,11 @@ coverflow.init = function() {
     };
 
     function flowToTarget(e) {
-       for (var i=0; i<albumsLength;i++) {
-        if (_albums[i] == e.target.parentNode) {
+       for (var i=0; i<itemsLength;i++) {
+        if (_items[i] == e.target.parentNode || _titles[i] == e.target) {
             _index = i;
             render();
-            i = albumsLength;
+            i = itemsLength;
         }
       }
     };
@@ -132,7 +138,6 @@ coverflow.init = function() {
     function wheel(event) {
         _index += event.wheelDelta / 120;
         render();
-        console.log(event.wheelDelta);
     };
 
     var drag = {
@@ -145,8 +150,6 @@ coverflow.init = function() {
         Drag: function (event) {
             if (!drag.down) return;
             var mouseX = event.clientX;
-            console.log(mouseX);
-            console.log("diff = "+(mouseX - drag.mouseStart));
             if (mouseX - drag.mouseStart > 100 ) {
                 _index--;
                 render();
@@ -167,7 +170,7 @@ coverflow.init = function() {
     Titles
     */
     function renderTitles() {
-      for (var i = 0; i < albumsLength; i++) {
+      for (var i = 0; i < itemsLength; i++) {
         _titleBar.innerHTML += "<title>"+_titles[i].innerHTML+"</title>";
       }
       _titles = Array.prototype.slice.call(document.querySelectorAll('#title-bar > title'));
@@ -195,10 +198,10 @@ coverflow.init = function() {
      **/
     function init() {
 
-        // get albums & set index on the album in the middle
-        _albums = Array.prototype.slice.call(document.querySelectorAll('section'));
+        // get items & set index on the item in the middle
+        _items = Array.prototype.slice.call(document.querySelectorAll('.item'));
         _itemImages = Array.prototype.slice.call(document.querySelectorAll('.item-image'));
-        _index = Math.floor( albumsLength / 2 );
+        _index = Math.floor( itemsLength / 2 );
 
         // get dom stuff
         _coverflow = get('#coverflow');
@@ -207,7 +210,7 @@ coverflow.init = function() {
         _titleBar = get('#title-bar');
 
         // display covers
-        for( var i = 0; i < albumsLength; i++ ) {
+        for( var i = 0; i < itemsLength; i++ ) {
             var url = _itemImages[i].getAttribute("data-image");
             _itemImages[i].style.backgroundImage = "url("+ url  +")";
         }
