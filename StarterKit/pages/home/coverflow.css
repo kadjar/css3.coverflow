@@ -60,7 +60,7 @@ html, body {
    
     transform-style: preserve-3d;
    
-    transition: all 300ms ease-in
+    transition: all 300ms ease-in;
 }
 #carousel {
 display: block;
@@ -80,7 +80,9 @@ top: 50px;
 
       position: absolute;
     top: 50%;
-    left: 50%;
+    left: 43%;
+
+    transition: all 300ms ease-in;
 }
 
 #coverflow-titles {
