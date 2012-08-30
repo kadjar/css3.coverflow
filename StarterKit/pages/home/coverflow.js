@@ -16,6 +16,7 @@ coverflow.init = function() {
     _nextLink = null,
     _items = [],
     _titles = [],
+    _descriptions = [],
     _transformName = 'transform',
     
 
@@ -26,7 +27,8 @@ coverflow.init = function() {
     MAX_ZINDEX = 42; // 
 
     _items = Array.prototype.slice.call(document.querySelectorAll('.item'));
-    _titles = Array.prototype.slice.call(document.querySelectorAll('.item > title'));
+    _titles = Array.prototype.slice.call(document.querySelectorAll('.item aside title'));
+    _descriptions = Array.prototype.slice.call(document.querySelectorAll('.item aside'));
     var _itemWidth = _items[0].offsetWidth;
     var _itemHeight = _items[0].offsetHeight;
     var itemsLength = _items.length - 1;
@@ -54,7 +56,8 @@ coverflow.init = function() {
 
                     _titles[i].style[_transformName] = "translateX( -" + (200 * (_index - i)) + "px )";
                     _titles[i].setAttribute("class", "");
-                    _items[i].setAttribute("class", "");
+                    _items[i].setAttribute("class", "item");
+                    _descriptions[i].style.display = "none";
                 }
 
                 // current
@@ -65,7 +68,8 @@ coverflow.init = function() {
 
                     _titles[i].style[_transformName] = "translateX(0px)";
                     _titles[i].setAttribute("class", "title-active");
-                    _items[i].setAttribute("class", "item-active");
+                    _items[i].setAttribute("class", "item item-active");
+                    _descriptions[i].style.display = "block";
                 } 
 
                  // after
@@ -73,10 +77,11 @@ coverflow.init = function() {
                     _items[i].style[_transformName] = "translateX( " + (OFFSET * (i - _index)) + "% )";
                     _items[i].style.zIndex = BASE_ZINDEX + (itemsLength - i);
                     _itemImages[i].style[_transformName] = "rotateY( -" + ROTATION + "deg )"/* + " scaleX( .8 )"*/;
-                    _items[i].setAttribute("class", "");
+                    _items[i].setAttribute("class", "item");
 
                     _titles[i].style[_transformName] = "translateX( " + (200 * (i - _index)) + "px )";
                     _titles[i].setAttribute("class", "");
+                    _descriptions[i].style.display = "none";
                 }         
         
             }

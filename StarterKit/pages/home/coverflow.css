@@ -33,7 +33,7 @@ html, body {
     
 }
 
-#coverflow section {
+#coverflow .item {
     perspective: 600px;
     display: block;
     position: absolute;
@@ -57,6 +57,7 @@ html, body {
 .item-image {
     width: 170px;
     height: 170px;
+    display: block;
    
     transform-style: preserve-3d;
    
