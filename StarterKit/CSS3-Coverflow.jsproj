@@ -112,6 +112,7 @@
     <Content Include="pages\detail\detail.js" />
     <Content Include="pages\home\coverflow.css" />
     <Content Include="pages\home\coverflow.js" />
+    <Content Include="pages\home\exampleObject.json" />
     <Content Include="pages\home\home.css" />
     <Content Include="pages\home\home.html" />
     <Content Include="pages\home\home.js" />
