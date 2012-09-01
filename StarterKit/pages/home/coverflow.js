@@ -44,16 +44,19 @@ coverflow.init = function () {
     } else {
       for (var i = 0; i < coverflow.data.dataLength; i++) {
 
+
+
         // before 
-        if (i < _index) {
+        if (i < _index ) {
           _items[i].style[_transformName] = "translateX( -" + ((OFFSET - (OFFSET / Math.pow(1.5, (_index - i)))) * 4) + "px )";
           _items[i].style.zIndex = BASE_ZINDEX + i;
-          _itemImages[i].style[_transformName] = "rotateY( " + ROTATION + "deg )" /* + " scaleX( .8 )"*/
-          ;
+          _itemImages[i].style[_transformName] = "rotateY( " + ROTATION + "deg )";
+          _itemImages[i].style.boxShadow = "rgba(0,0,0,0.5) -5px 5px 0px";
+          _itemImages[i].className = "item-image";
 
           _titles[i].style[_transformName] = "translateX( -" + (200 * (_index - i)) + "px )";
-          _titles[i].setAttribute("class", "");
-          _items[i].setAttribute("class", "item");
+          _titles[i].className = "";
+          _items[i].className = "item";
           _descriptions[i].style.display = "none";
         }
 
@@ -62,24 +65,34 @@ coverflow.init = function () {
           _items[i].style[_transformName] = "scale(1.2)";
           _items[i].style.zIndex = MAX_ZINDEX;
           _itemImages[i].style[_transformName] = "rotateY( 0deg )";
+          _itemImages[i].style.boxShadow = "none";
 
           _titles[i].style[_transformName] = "translateX(0px)";
-          _titles[i].setAttribute("class", "title-active");
-          _items[i].setAttribute("class", "item item-active");
+          _titles[i].className = "title-active";
+          _items[i].className = "item item-active";
           _descriptions[i].style.display = "block";
+
         }
 
         // after
         if (i > _index) {
           _items[i].style[_transformName] = "translateX( " + ((OFFSET - (OFFSET / Math.pow(1.5, (i - _index)))) * 4) + "px )";
           _items[i].style.zIndex = BASE_ZINDEX + (coverflow.data.dataLength - i);
-          _itemImages[i].style[_transformName] = "rotateY( -" + ROTATION + "deg )" /* + " scaleX( .8 )"*/
-          ;
-          _items[i].setAttribute("class", "item");
+          _itemImages[i].style[_transformName] = "rotateY( -" + ROTATION + "deg )";
+          _itemImages[i].style.boxShadow = "rgba(0,0,0,0.5) 5px 5px 0px";
+          _itemImages[i].className = "item-image";
+
+          _items[i].className = "item";
 
           _titles[i].style[_transformName] = "translateX( " + (200 * (i - _index)) + "px )";
-          _titles[i].setAttribute("class", "");
+          _titles[i].className = "";
           _descriptions[i].style.display = "none";
+
+        }
+
+        // hidden left
+        if (i < (_index - 4) || i > (_index + 4)) {
+          _itemImages[i].className = "item-image hidden";
         }
 
       }

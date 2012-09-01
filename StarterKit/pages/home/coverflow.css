@@ -53,6 +53,8 @@ html, body {
    
     transition: all 300ms ease-in; 
 
+    
+
 }
 .item-image {
     width: 170px;
@@ -63,6 +65,9 @@ html, body {
    
     transition: all 300ms ease-in;
 }
+  .item-image.hidden {
+    background: #fff !important;
+  }
 #carousel aside {
 color: #000;
 display: none;
