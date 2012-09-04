@@ -1,16 +1,14 @@
-
 /*
 * Layout
 */
+
+/* delete this stuff - merely for appbar testing purposes */
 
 html, body {
     position: relative;
     padding: 0;
     margin: 0;
     overflow: hidden;
-
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #333 ), color-stop(100%,black));
-    background: -webkit-radial-gradient(center, ellipse cover, #333 0%, black 100%);
     
     height: 100%;
     width: 100%;
@@ -20,24 +18,80 @@ html, body {
     font-family: sans-serif;
 }
 
+body {
+    background: url('/assets/images/sample-article.png') top center no-repeat;
+    background-size: cover;
+}
+
+/* end */
+
+.nim-carousel {
+    background: rgba(0,0,0,0.8);
+    height: 100%;
+    width: 100%;
+    display: -ms-grid;
+    -ms-grid-columns:  1fr;
+    -ms-grid-rows: 100px 50px 1fr 300px;
+}
+
+.nim-carousel nav {
+    background: url('/assets/images/01_background.png') top left no-repeat;
+    background-size: cover;
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+}
+
+.nim-carousel #title-bar {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+}
+.nim-carousel #carousel {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+}
+.nim-carousel #description-block {
+  -ms-grid-column: 1;
+  -ms-grid-row: 4;
+}
+
+/*
+* Header & Nav
+*/
+.nim-carousel nav {
+    text-align: left;
+    padding: 0px 50px;
+}
+.nim-carousel nav .back { 
+    height: 100px;
+    display: inline-block;
+    margin-right: 30px;
+}
+.nim-carousel .back object {
+    margin-top: 25px;
+}
+.nim-carousel nav h1 {
+    display: inline;
+    height: 100px;
+    position: relative;
+    top: -8px;
+    color: #fff;
+    font-size: 32pt;
+}
 
 /*
 * Coverflow
 */
 
 
-#coverflow {
-    height: 100%;
-    width: 100%;
-
-    
+.nim-carousel #carousel {
+    position: relative;
 }
 
-#coverflow .item {
+.nim-carousel .item {
     perspective: 600px;
     display: block;
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     
     width: 170px;
@@ -56,7 +110,7 @@ html, body {
     
 
 }
-.item-image {
+.nim-carousel .item-image {
     width: 170px;
     height: 170px;
     display: block;
@@ -65,87 +119,60 @@ html, body {
    
     transition: all 300ms ease-in;
 }
-  .item-image.hidden {
-    background: #fff !important;
-  }
-#carousel aside {
-color: #000;
-display: none;
+.nim-carousel .item-image.hidden {
+  background: #fff !important;
 }
 
 
-#title-bar {
-width: 100%;
-height: 100px;
+.nim-carousel #title-bar {
+    background: #666;
 display: block;
-position: absolute;
-top: 50px;
+
 }
-#title-bar title {
+.nim-carousel #title-bar title {
   display: inline-block;
   color: black;
   width: 200px;
-  padding: 10px 0px;
   position: absolute;
-  top: 50%;
   left: 50%;
   margin-left: -100px;
-
+  height: 50px;
+  line-height: 50px;
+  color: #ccc;
   transition: all 300ms ease-in;
+  font-size: large;
+  -ms-text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-#title-bar title.title-active {
-background: grey;
+.nim-carousel #title-bar title.title-active {
 color: #fff;
 font-weight: bold;
-font-size: large;
-padding: 10px 0px;
+font-size: x-large;
 }
-#coverflow-titles {
-  position: absolute;
-  bottom: 100px;
+.nim-carousel #coverflow-titles {
+
   width: 100%;
   height: 50px;
   text-align: center;
 }
 
-#coverflow section title {
-    display: block;
-    width: 170px;
-    height: 30px;
-}
-
 /*
-* Controls
+* Description
 */
 
-#controls {
-    position: absolute;
-    width: 100%;
-    bottom: 10%;
-    z-index: 1;
-
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-
-    color: #999;
-    font-size: 18px;
+.nim-carousel #description-block {
+  color: #fff;
+  text-align: left;
+  width: 30%;
+  margin: 0px auto;
 }
-
-#controls a  {
-    color: white; 
-    cursor: pointer;
+.nim-carousel #description-block title {
+  font-size: 26pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
 }
-
-#controls a:hover  {
-    color: 66FFFF;
-}
-
-
 
 
 

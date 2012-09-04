@@ -66,6 +66,7 @@ coverflow.init = function () {
           _items[i].style.zIndex = MAX_ZINDEX;
           _itemImages[i].style[_transformName] = "rotateY( 0deg )";
           _itemImages[i].style.boxShadow = "none";
+          _itemImages[i].className = "item-image";
 
           _titles[i].style[_transformName] = "translateX(0px)";
           _titles[i].className = "title-active";
@@ -214,7 +215,7 @@ coverflow.init = function () {
 
   var sampleData = {
     "items": [
-      { "title": "Fun.", "image": "/assets/images/album1.jpg", "description": "This is a brand new album from Fun." },
+      { "title": "This is an extra long title", "image": "/assets/images/album1.jpg", "description": "This is a brand new album from Fun." },
       { "title": "Adele", "image": "/assets/images/album2.jpg", "description": "Adele doesn't care if you think she's fat." },
       { "title": "MX", "image": "/assets/images/album3.jpg", "description": "I don't know anything about MX." },
       { "title": "Pink Floyd", "image": "/assets/images/album4.jpg", "description": "LSD creates some interesting things." },
@@ -242,13 +243,20 @@ coverflow.init = function () {
   //  }
   //  return theArray;
   //};
-  coverflow.data.dataBuilder = function() {
+  coverflow.data.carouselBuilder = function() {
     var carouselContent = "";
     for (var i = 0; i < coverflow.data.dataLength; i++) {
-      carouselContent += "<section class='item'><section class='item-image' style=\"background: url('"+coverflow.data.source.items[i].image+"')\"></section><aside><title>"+coverflow.data.source.items[i].title+"</title><caption>"+coverflow.data.source.items[i].description+"</caption></aside></section>";
+      carouselContent += "<section class='item'><section class='item-image' style=\"background: url('"+coverflow.data.source.items[i].image+"')\"></section></section>";
     };
     return carouselContent;
   };
+  coverflow.data.descriptionBuilder = function () {
+    var descriptionContent = "";
+    for (var i = 0; i < coverflow.data.dataLength; i++) {
+      descriptionContent += "<aside><title>" + coverflow.data.source.items[i].title + "</title><caption>" + coverflow.data.source.items[i].description + "</caption></aside>";
+    }
+    return descriptionContent;
+  }
   coverflow.data.titleBuilder = function() {
     var titleBarContent = "";
     for (var i = 0; i < coverflow.data.dataLength; i++) {
@@ -264,11 +272,12 @@ coverflow.init = function () {
   function init() {
     
     // get dom stuff
-    _coverflow = get('#coverflow');
+    //_coverflow = get('#coverflow');
     _prevLink = get('#prev');
     _nextLink = get('#next');
     _titleBar = get('#title-bar');
     _carousel = get('#carousel');
+    _descriptionBlock = get('#description-block');
 
 
     //_titles = coverflow.data.toArray("title");
@@ -276,26 +285,20 @@ coverflow.init = function () {
     //_descriptions = coverflow.data.toArray("description");
 
     // gather items from JSON and render
-    _carousel.innerHTML = coverflow.data.dataBuilder();
+    _carousel.innerHTML = coverflow.data.carouselBuilder();
     _titleBar.innerHTML = coverflow.data.titleBuilder();
+    _descriptionBlock.innerHTML = coverflow.data.descriptionBuilder();
 
     // get items & set index on the item in the middle
-    _items = Array.prototype.slice.call(document.querySelectorAll('.item'));
-    _itemImages = Array.prototype.slice.call(document.querySelectorAll('.item-image'));
-    _titles = Array.prototype.slice.call(document.querySelectorAll('#title-bar > title'));
-    _descriptions = Array.prototype.slice.call(document.querySelectorAll('.item aside'));
+    _items = Array.prototype.slice.call(document.querySelectorAll('.nim-carousel .item'));
+    _itemImages = Array.prototype.slice.call(document.querySelectorAll('.nim-carousel .item-image'));
+    _titles = Array.prototype.slice.call(document.querySelectorAll('.nim-carousel #title-bar > title'));
+    _descriptions = Array.prototype.slice.call(document.querySelectorAll('.nim-carousel #description-block aside'));
 
     OFFSET = _items[0].offsetWidth;
     _itemHeight = _items[0].offsetHeight;
 
     _index = Math.floor(coverflow.data.dataLength / 2);
-
-    // display covers
-    //for (var i = 0; i < itemsLength; i++) {
-    //  var url = _itemImages[i].getAttribute("data-image");
-    //  _itemImages[i].style.backgroundImage = "url(" + url + ")";
-    //}
-
 
     // do important stuff
     registerEvents();
@@ -306,5 +309,3 @@ coverflow.init = function () {
   init();
 
 };
-
-/* <section class="item"><section class="item-image" data-image="/assets/images/album1.jpg"></section><aside><title>Fun.</title><caption>This is a brand new album from Fun.</caption></aside></section > */

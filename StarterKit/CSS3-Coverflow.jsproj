@@ -53,6 +53,8 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="assets\images\01_background.png" />
+    <Content Include="assets\images\sample-article.png" />
     <Content Include="assets\images\album1.jpg" />
     <Content Include="assets\images\album2.jpg" />
     <Content Include="assets\images\album3.jpg" />
@@ -60,6 +62,7 @@
     <Content Include="assets\images\album5.jpg" />
     <Content Include="assets\images\album6.jpg" />
     <Content Include="assets\images\album7.jpg" />
+    <Content Include="assets\images\back.svg" />
     <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\smalllogo.png" />
     <Content Include="assets\images\splashscreen.png" />

@@ -2,6 +2,8 @@
     /*padding-left: 120px;*/
 }
 
+
+
 #semanticZoom.out {
     opacity:0;
     transition:all 0.3s ease-out;
